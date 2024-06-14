@@ -22,16 +22,16 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         webbrowser.get(browser_path).open(url)
         
         # Tiempo para que la página cargue completamente
-        time.sleep(12)
+        time.sleep(25)
         
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
-            pyautogui.click(482, 674)
-            time.sleep(7)
+            pyautogui.click(508, 826)
+            time.sleep(3)
             # Hacer clic en el botón de adjuntar imagen
-            pyautogui.click(573, 319)
-            time.sleep(7)
+            pyautogui.click(537, 477)
+            time.sleep(3)
             
             # Copiar la ruta de la imagen al portapapeles
             pyperclip.copy(imagen)
@@ -43,12 +43,12 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
             
             # Presionar ENTER para seleccionar la imagen
             pyautogui.press('enter')
-            time.sleep(3)  # Esperar a que la imagen se cargue en el chat
+            time.sleep(5)  # Esperar a que la imagen se cargue en el chat
             
         # Presionar ENTER para enviar el mensaje de texto (y la imagen si existe)
         pyautogui.press('enter')
         print(f"Mensaje y imagen enviados a {movil}.")
-        time.sleep(30)  # Esperar a que el mensaje y la imagen se envíen
+        time.sleep(15)  # Esperar a que el mensaje y la imagen se envíen
         
         # Cierra la pestaña actual
         pyautogui.hotkey('ctrl', 'w')
@@ -59,7 +59,7 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         time.sleep(tiempo_espera)
 
 # Leer los datos del archivo de contactos, mensajes e imágenes
-datos = pd.read_excel("listaContactos.xlsx")
+datos = pd.read_excel("asignaciones.xlsx")
 
 # Coordenadas del área de la ruta de la imagen (ajustar según sea necesario)
 image_path_coords = (408, 165)  # Ajustar según la posición real de la imagen en tu sistema de archivos
