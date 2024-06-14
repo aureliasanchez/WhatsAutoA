@@ -22,16 +22,16 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         webbrowser.get(browser_path).open(url)
         
         # Tiempo para que la página cargue completamente
-        time.sleep(12)
+        time.sleep(15)
         
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
-            pyautogui.click(679, 984)
-            time.sleep(5)
+            pyautogui.click(742, 981)
+            time.sleep(3)
             # Hacer clic en el botón de adjuntar imagen
-            pyautogui.click(720, 638)
-            time.sleep(5)
+            pyautogui.click(810, 630)
+            time.sleep(3)
             
             # Copiar la ruta de la imagen al portapapeles
             pyperclip.copy(imagen)
