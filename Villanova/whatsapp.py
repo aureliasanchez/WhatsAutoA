@@ -28,10 +28,10 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
             pyautogui.click(482, 674)
-            time.sleep(7)
+            time.sleep(3)
             # Hacer clic en el botón de adjuntar imagen
             pyautogui.click(573, 319)
-            time.sleep(7)
+            time.sleep(3)
             
             # Copiar la ruta de la imagen al portapapeles
             pyperclip.copy(imagen)
