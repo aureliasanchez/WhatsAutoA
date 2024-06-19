@@ -27,10 +27,10 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
-            pyautogui.click(508, 826)
+            pyautogui.click(557, 825)
             time.sleep(3)
             # Hacer clic en el botón de adjuntar imagen
-            pyautogui.click(537, 477)
+            pyautogui.click(608, 473)
             time.sleep(3)
             
             # Copiar la ruta de la imagen al portapapeles
@@ -48,13 +48,13 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         # Presionar ENTER para enviar el mensaje de texto (y la imagen si existe)
         pyautogui.press('enter')
         print(f"Mensaje y imagen enviados a {movil}.")
-        time.sleep(15)  # Esperar a que el mensaje y la imagen se envíen
+        time.sleep(10)  # Esperar a que el mensaje y la imagen se envíen
         
         # Cierra la pestaña actual
         pyautogui.hotkey('ctrl', 'w')
         
         # Espera aleatoria antes de pasar al siguiente contacto
-        tiempo_espera = random.uniform(4, 8)
+        tiempo_espera = random.uniform(6, 10)
         print(f"Esperando {tiempo_espera:.2f} segundos antes de pasar al siguiente contacto...")
         time.sleep(tiempo_espera)
 
@@ -62,7 +62,7 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
 datos = pd.read_excel("asignaciones.xlsx")
 
 # Coordenadas del área de la ruta de la imagen (ajustar según sea necesario)
-image_path_coords = (408, 165)  # Ajustar según la posición real de la imagen en tu sistema de archivos
+image_path_coords = (557, 165)  # Ajustar según la posición real de la imagen en tu sistema de archivos
 
 # Coordenadas del área de drop en el chat de WhatsApp Web
 drop_area_coords = (780, 663)  # Ajustar según la posición real del área de drop en el chat de WhatsApp Web
