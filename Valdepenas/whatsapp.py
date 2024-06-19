@@ -22,7 +22,7 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         webbrowser.get(browser_path).open(url)
         
         # Tiempo para que la página cargue completamente
-        time.sleep(18)
+        time.sleep(22)
         
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
@@ -35,7 +35,7 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
             
             # Copiar la ruta de la imagen al portapapeles
             pyperclip.copy(imagen)
-            time.sleep(3)
+            time.sleep(2)
             
             # Pegar la ruta de la imagen en el diálogo de adjuntar archivo
             pyautogui.hotkey('ctrl', 'v')
@@ -43,8 +43,8 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
             
             # Presionar ENTER para seleccionar la imagen
             pyautogui.press('enter')
-            time.sleep(5)  # Esperar a que la imagen se cargue en el chat
-            
+            time.sleep(3)  # Esperar a que la imagen se cargue en el chat    
+        
         # Presionar ENTER para enviar el mensaje de texto (y la imagen si existe)
         pyautogui.press('enter')
         print(f"Mensaje y imagen enviados a {movil}.")
@@ -54,7 +54,7 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         pyautogui.hotkey('ctrl', 'w')
         
         # Espera aleatoria antes de pasar al siguiente contacto
-        tiempo_espera = random.uniform(6, 10)
+        tiempo_espera = random.uniform(10, 15)
         print(f"Esperando {tiempo_espera:.2f} segundos antes de pasar al siguiente contacto...")
         time.sleep(tiempo_espera)
 
