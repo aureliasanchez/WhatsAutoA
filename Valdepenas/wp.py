@@ -7,7 +7,7 @@ import pyperclip
 import random
 
 # Función para enviar mensajes con imágenes usando un navegador específico
-def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
+def enviar_mensajes(datos, browser_path):
     moviles = datos['Movil']
     mensajes = datos['Mensaje']
     imagenes = datos['Imagen']
@@ -21,15 +21,15 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         webbrowser.get(browser_path).open(url)
         
         # Tiempo para que la página cargue completamente
-        time.sleep(15)
+        time.sleep(20)
         
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
-            pyautogui.click(742, 981)
+            pyautogui.click(498, 829)
             time.sleep(3)
             # Hacer clic en el botón de adjuntar imagen
-            pyautogui.click(810, 630)
+            pyautogui.click(577, 465)
             time.sleep(3)
             
             # Copiar la ruta de la imagen al portapapeles
@@ -42,18 +42,18 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
             
             # Presionar ENTER para seleccionar la imagen
             pyautogui.press('enter')
-            time.sleep(5)  # Esperar a que la imagen se cargue en el chat
+            time.sleep(10)  # Esperar a que la imagen se cargue en el chat
             
         # Presionar ENTER para enviar el mensaje de texto (y la imagen si existe)
         pyautogui.press('enter')
         
-        # Verificar si el mensaje ha sido enviado
+        # Esperar hasta que el mensaje haya sido enviado
         enviado = False
         intentos = 0
-        while not enviado and intentos < 5:
+        while not enviado and intentos < 10:  # Intentar hasta 10 veces
             time.sleep(5)  # Esperar antes de verificar
             # Capturar la región donde aparece el check de confirmación de envío
-            screenshot = pyautogui.screenshot(region=(980, 880, 30, 30))  # Ajustar según tu pantalla
+            screenshot = pyautogui.screenshot(region=(1787, 940, 50, 50))  # Ajustar según tu pantalla
             screenshot.save('screenshot.png')
             
             # Comprobar si el check de envío está presente
@@ -72,26 +72,17 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         pyautogui.hotkey('ctrl', 'w')
         
         # Espera aleatoria antes de pasar al siguiente contacto
-        tiempo_espera = random.uniform(6, 10)
+        tiempo_espera = random.uniform(4, 8)
         print(f"Esperando {tiempo_espera:.2f} segundos antes de pasar al siguiente contacto...")
         time.sleep(tiempo_espera)
 
 # Leer los datos del archivo de contactos, mensajes e imágenes
 datos = pd.read_excel("listaContactos.xlsx")
 
-# Coordenadas del área de la ruta de la imagen (ajustar según sea necesario)
-image_path_coords = (408, 165)  # Ajustar según la posición real de la imagen en tu sistema de archivos
-
-# Coordenadas del área de drop en el chat de WhatsApp Web
-drop_area_coords = (780, 663)  # Ajustar según la posición real del área de drop en el chat de WhatsApp Web
-
 # Ruta al navegador específico
 browser_path = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe %s'
 
 # Enviar mensajes a todos los contactos
-enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords)
+enviar_mensajes(datos, browser_path)
 
 print("Todos los mensajes han sido enviados")
-
-
-#pip install pyautogui pyperclip pandas
