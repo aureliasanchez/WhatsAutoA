@@ -22,16 +22,20 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         webbrowser.get(browser_path).open(url)
         
         # Tiempo para que la página cargue completamente
-        time.sleep(20)
+        time.sleep(32)
         
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
             pyautogui.click(537, 673)
-            time.sleep(3)
+            tiempo_adjuntar = random.uniform(2, 4)
+            print(f"Esperando {tiempo_adjuntar:.2f} segundos para adjuntar...")
+            time.sleep(tiempo_adjuntar)
             # Hacer clic en el botón de adjuntar imagen
             pyautogui.click(569, 320)
-            time.sleep(3)
+            tiempo_adjuntari = random.uniform(2, 4)
+            print(f"Esperando {tiempo_adjuntari:.2f} segundos para imagen...")
+            time.sleep(tiempo_adjuntari)
             
             # Copiar la ruta de la imagen al portapapeles
             pyperclip.copy(imagen)
@@ -47,16 +51,18 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
             
         # Presionar ENTER para enviar el mensaje de texto (y la imagen si existe)
         pyautogui.press('enter')
+        time.sleep(20)  # Esperar a que el mensaje y la imagen se envíen
         print(f"Mensaje y imagen enviados a {movil}.")
-        time.sleep(10)  # Esperar a que el mensaje y la imagen se envíen
         
         # Cierra la pestaña actual
         pyautogui.hotkey('ctrl', 'w')
         
         # Espera aleatoria antes de pasar al siguiente contacto
-        tiempo_espera = random.uniform(4, 8)
+        tiempo_espera = random.uniform(8, 12)
         print(f"Esperando {tiempo_espera:.2f} segundos antes de pasar al siguiente contacto...")
         time.sleep(tiempo_espera)
+        pyautogui.press('enter')
+
 
 # Leer los datos del archivo de contactos, mensajes e imágenes
 datos = pd.read_excel("listaContactos.xlsx")
