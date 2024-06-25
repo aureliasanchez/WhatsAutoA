@@ -26,10 +26,10 @@ def enviar_mensajes(datos, browser_path):
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
-            pyautogui.click(498, 829)
+            pyautogui.click(549, 821)
             time.sleep(3)
             # Hacer clic en el botón de adjuntar imagen
-            pyautogui.click(577, 465)
+            pyautogui.click(621, 471)
             time.sleep(3)
             
             # Copiar la ruta de la imagen al portapapeles
@@ -46,27 +46,7 @@ def enviar_mensajes(datos, browser_path):
             
         # Presionar ENTER para enviar el mensaje de texto (y la imagen si existe)
         pyautogui.press('enter')
-        
-        # Esperar hasta que el mensaje haya sido enviado
-        enviado = False
-        intentos = 0
-        while not enviado and intentos < 10:  # Intentar hasta 10 veces
-            time.sleep(5)  # Esperar antes de verificar
-            # Capturar la región donde aparece el check de confirmación de envío
-            screenshot = pyautogui.screenshot(region=(1787, 940, 50, 50))  # Ajustar según tu pantalla
-            screenshot.save('screenshot.png')
-            
-            # Comprobar si el check de envío está presente
-            enviado = pyautogui.locate('check_icon.png', 'screenshot.png') is not None
-            
-            if enviado:
-                print(f"Mensaje y imagen enviados a {movil}.")
-            else:
-                print("El mensaje no se ha enviado todavía, esperando...")
-                intentos += 1
-        
-        if not enviado:
-            print(f"No se pudo confirmar el envío del mensaje a {movil} después de varios intentos.")
+        time.sleep(10) 
         
         # Cierra la pestaña actual
         pyautogui.hotkey('ctrl', 'w')
@@ -77,7 +57,7 @@ def enviar_mensajes(datos, browser_path):
         time.sleep(tiempo_espera)
 
 # Leer los datos del archivo de contactos, mensajes e imágenes
-datos = pd.read_excel("listaContactos.xlsx")
+datos = pd.read_excel("asignaciones.xlsx")
 
 # Ruta al navegador específico
 browser_path = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe %s'
