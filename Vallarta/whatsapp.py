@@ -27,12 +27,12 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
-            pyautogui.click(537, 673)
+            pyautogui.click(499, 826)
             tiempo_adjuntar = random.uniform(2, 4)
             print(f"Esperando {tiempo_adjuntar:.2f} segundos para adjuntar...")
             time.sleep(tiempo_adjuntar)
             # Hacer clic en el botón de adjuntar imagen
-            pyautogui.click(569, 320)
+            pyautogui.click(588, 479)
             tiempo_adjuntari = random.uniform(2, 4)
             print(f"Esperando {tiempo_adjuntari:.2f} segundos para imagen...")
             time.sleep(tiempo_adjuntari)
@@ -66,7 +66,7 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
 
 # Leer los datos del archivo de contactos, mensajes e imágenes
 datos = pd.read_excel("listaContactos.xlsx")
-
+   
 # Coordenadas del área de la ruta de la imagen (ajustar según sea necesario)
 image_path_coords = (408, 165)  # Ajustar según la posición real de la imagen en tu sistema de archivos
 
