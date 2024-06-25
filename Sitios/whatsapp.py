@@ -27,10 +27,10 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
-            pyautogui.click(675, 991)
+            pyautogui.click(676, 987)
             time.sleep(3)
             # Hacer clic en el botón de adjuntar imagen
-            pyautogui.click(720, 636)
+            pyautogui.click(685, 631)
             time.sleep(3)
             
             # Copiar la ruta de la imagen al portapapeles
