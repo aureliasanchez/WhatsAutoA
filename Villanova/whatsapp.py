@@ -22,15 +22,15 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         webbrowser.get(browser_path).open(url)
         
         # Tiempo para que la página cargue completamente
-        time.sleep(20)
+        time.sleep(15)
         
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
-            pyautogui.click(498, 829)
+            pyautogui.click(477, 668)
             time.sleep(3)
             # Hacer clic en el botón de adjuntar imagen
-            pyautogui.click(577, 465)
+            pyautogui.click(521, 328)
             time.sleep(3)
             
             # Copiar la ruta de la imagen al portapapeles
@@ -48,7 +48,7 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         # Presionar ENTER para enviar el mensaje de texto (y la imagen si existe)
         pyautogui.press('enter')
         print(f"Mensaje y imagen enviados a {movil}.")
-        time.sleep(30)  # Esperar a que el mensaje y la imagen se envíen
+        time.sleep(10)  # Esperar a que el mensaje y la imagen se envíen
         
         # Cierra la pestaña actual
         pyautogui.hotkey('ctrl', 'w')
