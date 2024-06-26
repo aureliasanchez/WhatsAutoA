@@ -83,7 +83,8 @@ coords = {
 browser_paths = {
     'edge': 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe %s',
     'chrome': 'C:/Program Files/Google/Chrome/Application/chrome.exe %s',
-    'opera': 'C:/Users/Administrator/AppData/Local/Programs/Opera/launcher.exe'  # Ajustar la ruta a Opera según sea necesario
+    'opera': 'C:/Users/Administrator/AppData/Local/Programs/Opera/launcher.exe %s'  # Ajustar la ruta a Opera según sea necesario
+
 }
 
 # Parámetros de segmentación
@@ -102,7 +103,7 @@ for i, browser_name in enumerate(browser_order):
     enviar_mensajes(segment, browser_path, clip_coords, image_coords)
     print(f"Segmento de mensajes desde {start_index} hasta {end_index} completado.")
     if i < 2:
-        tiempo_espera_segmento = random.uniform(30, 35)
+        tiempo_espera_segmento = random.uniform(10, 15)
         print(f"Esperando {tiempo_espera_segmento:.2f} segundos antes de continuar con el siguiente segmento...")
         time.sleep(tiempo_espera_segmento)
 
