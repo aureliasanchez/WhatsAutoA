@@ -6,6 +6,10 @@ import pyautogui
 import os
 import pyperclip
 import random
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # Función para enviar mensajes con imágenes usando un navegador específico
 def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
@@ -13,60 +17,60 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
     mensajes = datos['Mensaje']
     imagenes = datos['Imagen']
     
+    # Configurar WebDriver para el navegador específico
+    driver = webdriver.Edge(executable_path='C:/Program Files (x86)/Microsoft/Edge/Application/msedgedriver.exe')
+    
     for movil, mensaje, imagen in zip(moviles, mensajes, imagenes):
         print(f"Enviando mensaje al número: {movil}")
-        time.sleep(5)
+        
         mensaje_codificado = urllib.parse.quote(mensaje)
         url = f"https://web.whatsapp.com/send?phone={movil}&text={mensaje_codificado}"
         
-        webbrowser.get(browser_path).open(url)
+        driver.get(url)
         
-        # Tiempo para que la página cargue completamente
-        time.sleep(30)
+        # Esperar a que el campo de texto de WhatsApp Web esté disponible
+        WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div[1]/div[2]/div/div[2]')))
         
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
-            pyautogui.click(499, 826)
-            tiempo_adjuntar = random.uniform(4, 7)
-            print(f"Esperando {tiempo_adjuntar:.2f} segundos para adjuntar...")
-            time.sleep(tiempo_adjuntar)
+            pyautogui.click(477, 668)
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div[1]/div[1]/div[2]/div')))
+            
             # Hacer clic en el botón de adjuntar imagen
-            pyautogui.click(588, 479)
-            tiempo_adjuntari = random.uniform(4, 7)
-            print(f"Esperando {tiempo_adjuntari:.2f} segundos para imagen...")
-            time.sleep(tiempo_adjuntari)
+            pyautogui.click(521, 328)
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/span[2]/div/div[2]/div/div/div[1]/div/ul/li[1]/button/input')))
             
             # Copiar la ruta de la imagen al portapapeles
             pyperclip.copy(imagen)
-            time.sleep(3)
+            time.sleep(1)
             
             # Pegar la ruta de la imagen en el diálogo de adjuntar archivo
             pyautogui.hotkey('ctrl', 'v')
-            time.sleep(2)
+            time.sleep(1)
             
             # Presionar ENTER para seleccionar la imagen
             pyautogui.press('enter')
-            time.sleep(3)  # Esperar a que la imagen se cargue en el chat
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/span[2]/div/div[2]/span/div/div/div/div/div[2]/span/div')))
             
         # Presionar ENTER para enviar el mensaje de texto (y la imagen si existe)
         pyautogui.press('enter')
-        time.sleep(17)  # Esperar a que el mensaje y la imagen se envíen
         print(f"Mensaje y imagen enviados a {movil}.")
+        time.sleep(5)  # Esperar a que el mensaje y la imagen se envíen
         
-        # Cierra la pestaña actual
-        pyautogui.hotkey('ctrl', 'w')
+        # Cerrar la pestaña actual
+        driver.execute_script("window.close()")
         
-        # Espera aleatoria antes de pasar al siguiente contacto
-        tiempo_espera = random.uniform(6, 10)
+        # Esperar antes de pasar al siguiente contacto
+        tiempo_espera = random.uniform(4, 8)
         print(f"Esperando {tiempo_espera:.2f} segundos antes de pasar al siguiente contacto...")
         time.sleep(tiempo_espera)
-        pyautogui.press('enter')
 
+    driver.quit()
 
 # Leer los datos del archivo de contactos, mensajes e imágenes
-datos = pd.read_excel("rondaY.xlsx")
-   
+datos = pd.read_excel("listaContactos.xlsx")
+
 # Coordenadas del área de la ruta de la imagen (ajustar según sea necesario)
 image_path_coords = (408, 165)  # Ajustar según la posición real de la imagen en tu sistema de archivos
 

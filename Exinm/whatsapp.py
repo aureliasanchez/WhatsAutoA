@@ -22,20 +22,16 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         webbrowser.get(browser_path).open(url)
         
         # Tiempo para que la página cargue completamente
-        time.sleep(30)
+        time.sleep(15)
         
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
-            pyautogui.click(499, 826)
-            tiempo_adjuntar = random.uniform(4, 7)
-            print(f"Esperando {tiempo_adjuntar:.2f} segundos para adjuntar...")
-            time.sleep(tiempo_adjuntar)
+            pyautogui.click(477, 668)
+            time.sleep(3)
             # Hacer clic en el botón de adjuntar imagen
-            pyautogui.click(588, 479)
-            tiempo_adjuntari = random.uniform(4, 7)
-            print(f"Esperando {tiempo_adjuntari:.2f} segundos para imagen...")
-            time.sleep(tiempo_adjuntari)
+            pyautogui.click(521, 328)
+            time.sleep(3)
             
             # Copiar la ruta de la imagen al portapapeles
             pyperclip.copy(imagen)
@@ -51,22 +47,20 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
             
         # Presionar ENTER para enviar el mensaje de texto (y la imagen si existe)
         pyautogui.press('enter')
-        time.sleep(17)  # Esperar a que el mensaje y la imagen se envíen
         print(f"Mensaje y imagen enviados a {movil}.")
+        time.sleep(10)  # Esperar a que el mensaje y la imagen se envíen
         
         # Cierra la pestaña actual
         pyautogui.hotkey('ctrl', 'w')
         
         # Espera aleatoria antes de pasar al siguiente contacto
-        tiempo_espera = random.uniform(6, 10)
+        tiempo_espera = random.uniform(4, 8)
         print(f"Esperando {tiempo_espera:.2f} segundos antes de pasar al siguiente contacto...")
         time.sleep(tiempo_espera)
-        pyautogui.press('enter')
-
 
 # Leer los datos del archivo de contactos, mensajes e imágenes
-datos = pd.read_excel("rondaY.xlsx")
-   
+datos = pd.read_excel("listaContactos.xlsx")
+
 # Coordenadas del área de la ruta de la imagen (ajustar según sea necesario)
 image_path_coords = (408, 165)  # Ajustar según la posición real de la imagen en tu sistema de archivos
 
