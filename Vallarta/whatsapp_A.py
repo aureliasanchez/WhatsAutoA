@@ -27,12 +27,12 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
             # Hacer clic en el botón de adjuntar (clip)
-            pyautogui.click(680, 983)
+            pyautogui.click(678, 984)
             tiempo_adjuntar = random.uniform(2, 4)
             print(f"Esperando {tiempo_adjuntar:.2f} segundos para adjuntar...")
             time.sleep(tiempo_adjuntar)
             # Hacer clic en el botón de adjuntar imagen
-            pyautogui.click(689, 628)
+            pyautogui.click(685, 629)
             tiempo_adjuntari = random.uniform(2, 4)
             print(f"Esperando {tiempo_adjuntari:.2f} segundos para imagen...")
             time.sleep(tiempo_adjuntari)
@@ -47,11 +47,11 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
             
             # Presionar ENTER para seleccionar la imagen
             pyautogui.press('enter')
-            time.sleep(3)  # Esperar a que la imagen se cargue en el chat
+            time.sleep(2)  # Esperar a que la imagen se cargue en el chat
             
         # Presionar ENTER para enviar el mensaje de texto (y la imagen si existe)
         pyautogui.press('enter')
-        time.sleep(15)  # Esperar a que el mensaje y la imagen se envíen
+        time.sleep(10)  # Esperar a que el mensaje y la imagen se envíen
         print(f"Mensaje y imagen enviados a {movil}.")
         
         # Cierra la pestaña actual
@@ -65,7 +65,7 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
 
 
 # Leer los datos del archivo de contactos, mensajes e imágenes
-datos = pd.read_excel("listaContactos.xlsx")
+datos = pd.read_excel("rondaA.xlsx")
    
 # Coordenadas del área de la ruta de la imagen (ajustar según sea necesario)
 image_path_coords = (408, 165)  # Ajustar según la posición real de la imagen en tu sistema de archivos
