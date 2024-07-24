@@ -22,7 +22,7 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         webbrowser.get(browser_path).open(url)
         
         # Tiempo para que la página cargue completamente
-        time.sleep(25)
+        time.sleep(28)
         
         # Si hay una imagen, se adjunta la imagen antes de enviar el mensaje de texto
         if pd.notna(imagen):
@@ -59,7 +59,7 @@ def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
         time.sleep(tiempo_espera)
 
 # Leer los datos del archivo de contactos, mensajes e imágenes
-datos = pd.read_excel("asignaciones.xlsx")
+datos = pd.read_excel("C:/Users/4to Creativo/OneDrive/Desktop/WhatsAutoA/Rancho/asignaciones.xlsx")
 
 # Coordenadas del área de la ruta de la imagen (ajustar según sea necesario)
 image_path_coords = (557, 165)  # Ajustar según la posición real de la imagen en tu sistema de archivos
