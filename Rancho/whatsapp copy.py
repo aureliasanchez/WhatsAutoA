@@ -7,8 +7,7 @@ import os
 import pyperclip
 import random
 #52_7751075452.
-#52_7751238969.
-
+#52_7751238969. ....7751264865
 # Función para enviar mensajes con imágenes usando un navegador específico
 def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
     moviles = datos['Movil']
