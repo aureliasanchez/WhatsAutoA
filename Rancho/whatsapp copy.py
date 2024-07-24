@@ -6,6 +6,7 @@ import pyautogui
 import os
 import pyperclip
 import random
+#52_7751075452.
 
 # Función para enviar mensajes con imágenes usando un navegador específico
 def enviar_mensajes(datos, browser_path, image_path_coords, drop_area_coords):
